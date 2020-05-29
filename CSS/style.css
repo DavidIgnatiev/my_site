@@ -1,0 +1,902 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
+/*Сброс всех стилей перед использованием своих*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* make sure to set some focus styles for accessibility */
+:focus {
+    outline: 0;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+
+
+
+/* lato-regular - latin */
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/lato-v16-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Lato Regular'), local('Lato-Regular'),
+         url('../fonts/lato-v16-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/lato-v16-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/lato-v16-latin-regular.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/lato-v16-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/lato-v16-latin-regular.svg#Lato') format('svg'); /* Legacy iOS */
+  }
+  /* lato-700 - latin */
+  @font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/lato-v16-latin-700.eot'); /* IE9 Compat Modes */
+    src: local('Lato Bold'), local('Lato-Bold'),
+         url('../fonts/lato-v16-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/lato-v16-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/lato-v16-latin-700.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/lato-v16-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/lato-v16-latin-700.svg#Lato') format('svg'); /* Legacy iOS */
+  }
+  /* lato-900 - latin */
+  @font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 900;
+    src: url('../fonts/lato-v16-latin-900.eot'); /* IE9 Compat Modes */
+    src: local('Lato Black'), local('Lato-Black'),
+         url('../fonts/lato-v16-latin-900.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/lato-v16-latin-900.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/lato-v16-latin-900.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/lato-v16-latin-900.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/lato-v16-latin-900.svg#Lato') format('svg'); /* Legacy iOS */
+  }
+
+  html {
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+  }
+  *, *::before, *, *::after {
+      -webkit-box-sizing: inherit;
+              box-sizing: inherit;
+  }
+
+  /*Базовые настройки для всей странички*/
+  body {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 1.2;
+    color: #102746;
+  }
+/*для ограничения ширины и для выравнивания по центру*/
+  .wrapper {
+      max-width: 1060px;
+      margin: 0 auto;/*выравнивание по центру родительского элемента,родительский элемент header*/
+      padding: 0 15px;
+  }
+  .wrapper_full {
+      max-width: 1262px;/*макс. ширина нашей странички*/
+      margin: 0 auto;
+      padding: 0 15px;
+  }
+
+  .section_title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 35px;
+    line-height: 42px;
+    /* identical to box height */
+    color: #102746;
+    position: relative;/*позиция для псевдо элемента относительно его родителя*/
+    padding-bottom: 10px;
+  }
+  .section_title::after /*рисуем линию*/ {
+      display: block;/*друг под другом синия линия под текстом*/
+      content: '';/*в данном случаи должен быть пустой контент*/
+      width: 253px;
+      height: 3px;
+      background-color: #006dfe;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+  }
+
+
+
+  /*header start*/
+  .header {
+      /*здесь мы фиксируем всеь заголовок(header) в вверху нащего сайта*/
+      position: fixed;
+      top: 0;/*прижимаем макс вверх*/
+      left: 0;/*прижимаем к левому краю*/
+      width: 100%;
+      padding-bottom: 20px;
+      z-index: 999;
+      -webkit-transition: .2s linear;
+      -o-transition: .2s linear;
+      transition: .2s linear;/*для плавного перехода*/
+  }
+  .header_active /*будет работать когда я перемещяюсь по сайту*/ {
+    background: #0E1D28;
+    opacity: .95;
+  }
+  .header_wrapper {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;/*Размещяем в строчку*/
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;/*чтобы не были друг на друга*/
+      -webkit-box-align: end;
+          -ms-flex-align: end;
+              align-items: flex-end;/*Выравнивание по низу блока*/
+      -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+              justify-content: space-between;/*место между элементами*/
+      padding-top: 56px;
+  }
+.header_list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    list-style-type: none;/*уберает маркер или цифры списка*/
+}
+.header_item {
+    margin-right: 82px;
+
+}
+.header_item:last-child /*свойства для последнего элемента в списке,список меню */ {
+    margin-right: 0;
+}
+.header_link {
+    font-family: 'Lato';/*щрифт*/
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.header_link:hover, .header_link:focus, .header_link:active{
+    opacity: .25;/*прозрачность*/
+}
+
+
+.header_burger {
+    width: 40px;
+    height: 28px;
+    position: relative;
+    display: none;
+}
+.burger_line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    position: absolute;
+    left: 0;
+}
+.burger_line-first {
+    top: 0;
+}
+.burger_line-second {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+}
+.burger_line-third {
+    bottom: 0;
+}
+/*header end*/
+
+
+
+/*intro start*/
+.intro {
+    height: 100vh;
+    background: url(../img/intro_bg.jpg) no-repeat center;
+    background-size: cover;/*растягивает картинку по всему экрану*/
+    padding-top: 263px;
+    padding-bottom: 223px;
+    margin-bottom: 150px;
+}
+.intro_title {
+    max-width: 619px;
+    font-weight: 500;
+    font-size: 50px;
+    line-height: 60px;
+    color: #FFFFFF;
+}
+.intro_subtitle {
+    max-width: 546px;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* or 150% */
+    color: #FFFFFF;
+    padding-bottom: 59px;
+}
+/*intro end*/
+
+
+/*Search form begin*/
+.search_form_info {
+    /*убераем пробелы и выстовляем в одну линию друг за другом*/
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;/*чтобы не были друг на друга*/
+}
+.search_form_field {
+    width: 296px;
+    border: 0;
+    border-bottom: 2px solid #BFC0C5;
+    margin-right: 60px;
+    margin-bottom: 10px;
+    background: transparent url(../img/svg/Oval.svg) no-repeat left 1px;/*выравнивание(background-position)*/
+    background-size: 20px;
+    padding-left: 43px;
+    padding-bottom: 25px;
+}
+/*обращение к псевдо элементу placeholder*/
+.search_form_field::-webkit-input-placeholder {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+.search_form_field::-moz-placeholder {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+.search_form_field:-ms-input-placeholder {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+.search_form_field::-ms-input-placeholder {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+.search_form_field::placeholder {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+
+.search_form_submit {
+    padding: 15px 39px;/*первое число это верхний и нижний отступ и второе это левый и правый*/
+    /*padding: 15px 15px 39px 39px*/
+    text-transform: uppercase;
+    border: 0;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: #FFFFFF;
+    background: #1B7DFF;
+}
+.search_form_submit:hover, .search_form_submit:focus, .search_form_submit:active {
+    background: #1a56a5;
+    opacity: 0.75;
+}
+/*Search form end*/
+
+
+
+/*benefits begin*/
+.benefits {
+    margin-bottom: 138px;
+}
+
+.benefits_wrap {
+    max-width: 1262px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    -webkit-box-shadow: 0px 2px 20px rgba(21, 24, 36, 0.15993);
+            box-shadow: 0px 2px 20px rgba(21, 24, 36, 0.15993);
+    position: relative;/*что это*/
+}
+.benefits_title {
+    width: 100%;
+    font-weight: 500;
+    font-size: 35px;
+    line-height: 42px;
+    color: #102746;
+    padding: 93px 100px 120px 100px;
+    position: absolute;/*что это*/
+    left: 0;
+    top: 0;
+    -webkit-transform: translateY(-100%);
+        -ms-transform: translateY(-100%);
+            transform: translateY(-100%);/*что это*/
+    background-color: white;
+}
+.benefit_card_title{
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+    color: #000000;
+    margin-bottom: 26px;
+}
+.benefit_card_desc {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* or 150% */
+    color: #000000;
+    margin-bottom: 39px;
+}
+.benefit_card_more {
+    display: inline-block;/*что это*/
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    color: #006DFE;
+    text-decoration: none;
+    margin-bottom: 106px;
+    padding-right: 59px;
+    background: url(../img/svg/arrow.svg) no-repeat 95% center;
+    -webkit-transition: 0.2s all;
+    -o-transition: 0.2s all;
+    transition: 0.2s all;/*эфект плавного джижения стрелочки*/
+}
+
+.benefit_card_more:hover, .benefit_card_more:focus {
+    background: url(../img/svg/arrow.svg) no-repeat right center;
+}
+
+
+
+.benefit_card_pic {
+    margin-bottom: 37px;
+    max-width: 66px;/*для того чтобы картинки не миняли размер()(не увеличивались больше чем 66px)*/
+}
+.benefits_cards {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 55px 1fr 55px 1fr;
+    grid-template-columns: repeat(3, 1fr);/*делим строку на 3 колонки одинакового размера*/
+    grid-column-gap: 55px;/*растояние между столбцами*/
+    padding: 20px 100px 0 100px;
+}
+.benefit_card {
+    -ms-grid-column-span: 1;
+    grid-column: span 1;/*карточка занимает только колонку занимает толька одну часть из трёх*/
+}
+
+/*benefits end*/
+
+
+
+/*styles for places begin*/
+.places {
+    margin-bottom: 142px;
+}
+
+.places_caption {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;/*выравнивание по центру в строке*/
+    margin-bottom: 46px;
+}
+.places_view_all {
+    display: inline-block;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    text-align: right;
+    color: #006DFE;
+    text-decoration: none;
+    padding-right: 59px;
+    background: url(../img/svg/arrow.svg) no-repeat right center;
+}
+.places_view_all:hover, .places_view_all:focus {
+    opacity: .65;
+}
+
+/*для того чтобя разделить две картинки с верху и три с низу нам нужно использовать 6 колонок потомучто она деляться на 3 и на 2*/
+.places_cards {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 10px 1fr 10px 1fr 10px 1fr 10px 1fr 10px 1fr;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 10px;
+}
+.places_card_size-lg {
+    -ms-grid-column-span: 3;
+    grid-column: span 3;/*выделили по три колонки на каждую большую картинку*/
+}
+.places_card_pic {
+    width: 100%;
+    height: 354px;
+    -o-object-fit: cover;
+       object-fit: cover;/*при уменьщений страницы автоматический уменьшает размер картинки,оставляет только центр картинки*/
+}
+.places_card:hover .places_card_pic{
+    -webkit-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+            transform: scale(1.05);/*при наведений увеличеваеться картинка, он работает вместе с overflow: hodden*/
+}
+.places_card {
+    position: relative;
+    overflow: hidden;/*чтобы при эфекте transform: scale изображение не выходило за рамки контэйнерав котором находиться изображения*/
+}
+.places_card::after {
+    display: block;/*друг под другом синия линия под текстом*/
+    content: '';/*в данном случаи должен быть пустой контент*/
+    width: 100%;
+    height: 100%;
+    background-color: rgba(21, 24, 36, 0.4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;/*ставим на 2 слой*/
+}
+.places_card_title {
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 60px;/*высота строки*/
+    color: #FFFFFF;
+    position: absolute;
+    left: 29px;
+    bottom: 27px;
+    z-index: 3;/*ставим на 3 слой*/
+}
+.places_card_small {
+    -ms-grid-column-span: 2;
+    grid-column: span 2;
+}
+.places_card_pic_sm {
+    height: 283px;
+}
+.places_card_link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+}
+
+/*styles for places end*/
+
+
+/*tours begin*/
+.tours {
+    margin-bottom: 139px;
+}
+.tours_tour {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 108px 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 108px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-bottom: 83px;
+}
+.tour_thumb {
+    width: 100%;
+}
+.tours_title {
+    margin-bottom: 85px;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 40px;
+    color: #102746;
+}
+.tour_info {
+    padding-left: 51px;
+}
+.tour_desc {
+    margin-bottom: 58px;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* or 150% */
+    color: #102746;
+}
+.tour_link {
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+    text-align: right;
+    color: #006DFE;
+    padding-right: 59px;
+    background: url(../img/svg/arrow.svg) no-repeat right center;
+}
+.tour_link:hover {
+    opacity: .65;
+}
+/*tours end*/
+
+
+
+/*top begin*/
+.top {
+    margin-bottom: 86px;/*Этот отступ вычесляеться из 144px(отступ на макете) - 58px это нижний отступ на карточках*/
+}
+.top_title {
+    margin-bottom: 64px;
+}
+.top_cards {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 57px 1fr 57px 1fr 57px 1fr 57px 1fr 57px 1fr;
+    grid-template-columns: repeat(6, 1fr);
+    grid-column-gap: 57px;/*растояние между колонками*/
+    grid-row-gap: 57px;/*растояние между строками*/
+}
+.top_card {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;/**/
+    -ms-grid-column-span: 2;
+    grid-column: span 2;
+}
+.top_card-pic {
+    position: relative;/*чтобы текст был на картинке*/
+    margin-bottom: 45px;
+}
+.top_card-thumb {
+    width: 100%;
+}
+.top_card-stats {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;/*распологать все элементы с права в блоке*/
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(21, 24, 36, 0.6);
+    padding: 16px 25px;
+}
+.top_card-title {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFF;
+    margin: 0 auto 0 0;/**/
+}
+.top_card-likes {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+    padding-right: 20px;
+    background: url(../img/svg/top_likes1.svg) no-repeat right;
+    margin-right: 14px;
+}
+.top_card-comments {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+    padding-right: 23px;
+    background: url(../img/svg/top_comments2.svg) no-repeat right;
+}
+.top_desc {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* or 150% */
+    color: #102746;
+    margin-bottom: 31px;
+}
+.top_link {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+    text-decoration: none;
+    background: #006DFE;
+    padding: 12px 19px;
+    width: 118px;
+    margin: auto 0 0 0;/*очень часто бывает так что текст имеет разный размер(количество символов и пробелы),И из-за этого полаеться кнопка на разной высоте(ломаеться структура сайта)
+
+    для того чтобы этого не было мы сделали следующее
+    .top_card сделали display flex и flex-direction: column;
+    и для элемента top_link margin: auto 0 0 0;*/
+}
+.top_link:hover {
+    opacity: .65;
+}
+/*top end*/
+
+
+/*video start*/
+.videos {
+    width: 100%;
+}
+.video_wrapper {
+    max-width: 1440px;
+    margin: 0 auto;
+    position: relative;
+}
+.video_item {
+    padding-top: 56%;
+}
+.video_element {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+/*video end*/
+
+
+/*footer start*/
+.footer {
+    background: #0E1D28;
+    padding: 119px 0;
+}
+.footer_item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+}
+.footer_logo {
+    width: 50%;
+}
+.footer_nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;/*растояние между списками*/
+    width: 50%;
+}
+.footer_link {
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+.footer_menu {
+    list-style-type: none;
+}
+.footer_menu_title {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    color: #FFFFFF;
+}
+.footer_link:hover, .footer_menu_title:hover,  .footer_link:focus, .footer_menu_title:focus {
+    color: lightgray;
+}
+/*footer end*/
+
+
+
+/*media start*/
+/*медиа запросы это запросы на ширину экрана*/
+
+@media screen and (max-width: 980px) {
+    .header_wrapper {
+        padding-top: 25px;
+    }
+    .intro {
+        padding-top: 150px;
+        padding-bottom: 50px;
+        margin-bottom: 50px;
+    }
+    .search_form_field {
+        margin-bottom: 25px;
+    }
+    .benefits_title {
+        padding: 50px 100px;
+    }
+    .benefits_cards {
+        grid-column-gap: 25px;
+        padding: 20px 50px 0 50px;
+    }
+    .benefit_card_pic {
+        margin-bottom: 20px;
+    }
+    .benefit_card_more {
+        margin-bottom: 30px;
+    }
+    .benefits_wrap {
+        -webkit-box-shadow: none;
+                box-shadow: none;
+    }
+    .benefits {
+        margin-bottom: 60px;
+    }
+    .places_card_size-lg {
+        -ms-grid-column-span: 6;
+        grid-column: span 6;
+    }
+    .places_card_small {
+        -ms-grid-column-span: 6;
+        grid-column: span 6;
+    }
+    .places {
+        margin-bottom: 70px;
+    }
+    .tours_tour {
+        grid-gap: 54px;
+    }
+    .tours_title {
+        margin-bottom: 27px;
+    }
+    .tour_desc {
+        margin-bottom: 20px;
+    }
+    .tour_info {
+        padding-left: 0;
+    }
+    .tours {
+        margin-bottom: 69px;
+    }
+    .top {
+        margin-bottom: 30px;
+    }
+    .top_card {
+        -ms-grid-column-span: 3;
+        grid-column: span 3;
+    }
+    .top_card-pic {
+        margin-bottom: 10px;
+    }
+    .footer {
+        padding: 50px 0;
+    }
+    .footer_logo {
+        padding-left: 30px;
+    }
+}
+
+/*формируеться доп. меню*/
+ @media screen and (max-width: 767px) {
+   .header_burger {
+       display: block;
+   }
+   .header_nav {
+       width: 100%;
+       height: 100%;
+       position: fixed;
+       top: 0;
+       left: 0;
+       background-color: #000;
+       z-index: 10;
+       -webkit-transform: translateX(100%);
+           -ms-transform: translateX(100%);
+               transform: translateX(100%);/*убераем меню в сторону,ждём нажатие кнопки*/
+       -webkit-transition: .2s all linear;
+       -o-transition: .2s all linear;
+       transition: .2s all linear;
+       padding: 75px;
+   }
+   .header_nav-active {
+    -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+            transform: translateX(0);
+   }
+   .header_item {
+       width: 100%;
+       margin-right: 0;
+       margin-bottom: 30px;
+    }
+    .header-item:last-child {
+        margin-bottom: 0;
+    }
+    .header_link {
+        line-height: 48px;
+        font-size: 42px;
+    }
+    .header_nav-close {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 11;
+    }
+    .header_nav-close-line {
+        display: block;
+        background-color: white;
+        width: 100%;
+        height: 2px;
+        position: absolute;
+        top: 50%;
+    }
+    .header_nav-close-line:first-child {
+        -webkit-transform: translateY(-50%) rotate(45deg);
+            -ms-transform: translateY(-50%) rotate(45deg);
+                transform: translateY(-50%) rotate(45deg);
+    }
+    .header_nav-close-line:last-child {
+        -webkit-transform: translateY(-50%) rotate(-45deg);
+            -ms-transform: translateY(-50%) rotate(-45deg);
+                transform: translateY(-50%) rotate(-45deg);
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .top_card {
+        -ms-grid-column-span: 6;
+        grid-column: span 6;
+    }
+}
+
+/*media end*/
